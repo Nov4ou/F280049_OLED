@@ -2,6 +2,7 @@
 
 A lightweight SSD1306 OLED C driver for TMS320F28004x real-time microcontroller projects.
 Simply plug in your own SPI and GPIO routines, then use the provided APIs to initialize the display and render text, numbers, and graphics with ease.
+
 ---
 
 ## Features
