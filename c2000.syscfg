@@ -1,0 +1,44 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --part "F28004x_100PZ" --package "F28004x_100PZ" --context "system" --product "C2000WARE@5.04.00.00"
+ * @v2CliArgs --device "TMS320F280049" --package "100PZ" --context "system" --product "C2000WARE@5.04.00.00"
+ * @versions {"tool":"1.24.0+4110"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1 = gpio.addInstance();
+const gpio2 = gpio.addInstance();
+const spi   = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1  = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.$name           = "OLED_RST";
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.gpioPin.$assign = "GPIO57";
+
+gpio2.direction       = "GPIO_DIR_MODE_OUT";
+gpio2.$name           = "OLED_DC";
+gpio2.gpioPin.$assign = "GPIO17";
+
+spi1.$name                   = "mySPI0";
+spi1.mode                    = "SPI_MODE_CONTROLLER";
+spi1.useInterrupts           = false;
+spi1.useFifo                 = false;
+spi1.useInterfacePins        = ["SPI@_CLK","SPI@_SIMO","SPI@_STE"];
+spi1.bitRate                 = 400000;
+spi1.dataWidth               = "8";
+spi1.useCase                 = "CUSTOM";
+spi1.transferProtocol        = "SPI_PROT_POL1PHA0";
+spi1.picoQual.$name          = "myGPIOQUAL0";
+spi1.clkQual.$name           = "myGPIOQUAL1";
+spi1.pteQual.$name           = "myGPIOQUAL2";
+spi1.spi.$assign             = "SPIA";
+spi1.spi.spi_picoPin.$assign = "GPIO16";
+spi1.spi.spi_clkPin.$assign  = "GPIO56";
+spi1.spi.spi_ptePin.$assign  = "GPIO11";
